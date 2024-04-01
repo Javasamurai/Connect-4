@@ -19,7 +19,7 @@ class Grid
     bool CheckNeighbours(int currentConnections, int currentRow, int currentCol, int value, int dirr, int dirc);
     private:
     int cells[ROWS][COLS];
-    bool IsSameValue(Cell* cell1, Cell* cell2);
+    bool IsSameValue(Cell* cell1, int value);
     Cell cell;
 };
 

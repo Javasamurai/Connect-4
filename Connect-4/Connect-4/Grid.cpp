@@ -45,7 +45,8 @@ bool Grid::IsColFull(int col)
 
 bool Grid::IsConnected(Cell* cell, int value)
 {
-    vector<vector<int>> directions = {{0, 1}, {1, 0}, {1, 1}, {1, -1}, {0, -1}};
+    // Right, down,left, diagonal right,
+    vector<vector<int>> directions = {{0, 1}, {1, 0}, {-1, 1}, {-1, -1}, {0, -1}};
 
     int row = cell->row;
     int col = cell->col;
@@ -54,8 +55,9 @@ bool Grid::IsConnected(Cell* cell, int value)
     for (const auto& dir : directions) {
         int directionRow = dir[0];
         int directionCol = dir[1];
+        int count = 1;
 
-        if (CheckNeighbours(1, row, col, value, directionRow, directionCol))
+        if (CheckNeighbours(count, row + directionRow, col + directionCol, value, directionRow, directionCol))
         {
             return true;
         }
@@ -66,36 +68,29 @@ bool Grid::IsConnected(Cell* cell, int value)
 bool Grid::CheckNeighbours(int currentConnections, int currentRow, int currentCol, int value, int dirr, int dirc)
 {
     int maxConnections = 4;
-    bool outofBounds = currentRow <= 0 || currentRow >= ROWS || currentCol <= 0 || currentCol >= COLS;
+    bool inBounds = currentRow >= 0 && currentRow < ROWS && currentCol >= 0 && currentCol < COLS;
     Cell* c = new Cell(currentRow, currentCol);
-    
-    cout << "Cell:" << currentRow << ":" << currentCol << endl;
-    if (!IsConnected(c, value) || !outofBounds) {
+
+    if (!inBounds ||!IsSameValue(c, value)) {
         return currentConnections >= maxConnections;
     }
+
     return CheckNeighbours(currentConnections + 1, currentRow + dirr, currentCol + dirc, value, dirr, dirc);
 }
 
-bool Grid::IsSameValue(Cell* cell1, Cell* cell2)
+bool Grid::IsSameValue(Cell* cell1, int value)
 {
-    if (cells[cell1->row][cell1->col] == cells[cell2->row][cell2->col])
-    {
-        return true;
-    }
-    return false;
+    return (cells[cell1->row][cell1->col] == value);
 }
 
 Cell* Grid::AddElementAt(int playerId, int col)
 {
     int emptyRow = ROWS - 1;
 
-    cout << "Empty row?" << cells[emptyRow][col] << endl;
-
     while (cells[emptyRow][col] != -1 || emptyRow < 0)
     {
         emptyRow--;
     }
-    cout << "Empty row:" << emptyRow << endl;
     // Add coin to the row
     cout << "Adding value to:" << emptyRow << ":"  << col << endl;
     Cell* cell = new Cell(emptyRow, col);

@@ -29,6 +29,8 @@ public:
     cout << "GAME STARTS NOW" << endl;
     cout << "--------------------------" << endl;
   }
+    
+
   void StartGame() {
       cout << "Starting game....";
       Grid grid;
@@ -37,31 +39,31 @@ public:
       // 0 is p1, 1 is p2
       int turn = 0;
       int input = -1;
+      Cell* cell = nullptr;
       
-      if (turn == 0)
-      {
-          input = p1.TakeInput(grid);
-      }
-      else
-      {
-          input = p2.TakeInput(grid);
-      }
-      
-      Cell* cell = grid.AddElementAt(turn, input);
-      grid.ShowGrid();
-
-      if (grid.IsConnected(cell, turn))
-      {
+      do {
           if (turn == 0)
           {
-              cout << "P1 wins" << endl;
+              input = p1.TakeInput(grid);
           }
           else
           {
-              cout << "P2 wins" << endl;
+              input = p2.TakeInput(grid);
           }
+          cell = grid.AddElementAt(turn, input);
+          turn = turn == 0 ? 1 : 0;
+          grid.ShowGrid();
       }
-      turn = turn == 0 ? 1 : 0;
+      while (!grid.IsConnected(cell, turn == 0 ? 1 : 0));
+
+      if (turn == 1)
+      {
+          cout << "P1 wins" << endl;
+      }
+      else
+      {
+          cout << "P2 wins" << endl;
+      }
   }
 };
 int main() {

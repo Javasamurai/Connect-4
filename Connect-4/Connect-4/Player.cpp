@@ -12,6 +12,7 @@ int Player::GetPlayerID()
 {
     return playerID;
 }
+
 int Player:: TakeInput(Grid &grid)
 {
     cout << "Taking input from:" << playerID << endl;
