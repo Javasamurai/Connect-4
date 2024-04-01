@@ -1,5 +1,7 @@
 #include "Grid.hpp"
 #include "iostream"
+#include "Cell.hpp"
+#include "vector"
 using namespace std;
 
 Grid::Grid()
@@ -41,22 +43,52 @@ bool Grid::IsColFull(int col)
     }
 }
 
-bool Grid::IsConnected(int col)
+bool Grid::IsConnected(Cell* cell, int value)
 {
-// Check if the diagonal match is there
-// Check if horizontal match is there
-// Check if vertical match is there
-    if (col == 0)
-    {
-        
-    }
+    vector<vector<int>> directions = {{0, 1}, {1, 0}, {1, 1}, {1, -1}, {0, -1}};
 
+    int row = cell->row;
+    int col = cell->col;
+    // Iterate b/w directions
+    
+    for (const auto& dir : directions) {
+        int directionRow = dir[0];
+        int directionCol = dir[1];
+
+        if (CheckNeighbours(1, row, col, value, directionRow, directionCol))
+        {
+            return true;
+        }
+    }
+    
+    return false;
+}
+bool Grid::CheckNeighbours(int currentConnections, int currentRow, int currentCol, int value, int dirr, int dirc)
+{
+    int maxConnections = 4;
+    bool outofBounds = currentRow <= 0 || currentRow >= ROWS || currentCol <= 0 || currentCol >= COLS;
+    Cell* c = new Cell(currentRow, currentCol);
+    
+    cout << "Cell:" << currentRow << ":" << currentCol << endl;
+    if (!IsConnected(c, value) || !outofBounds) {
+        return currentConnections >= maxConnections;
+    }
+    return CheckNeighbours(currentConnections + 1, currentRow + dirr, currentCol + dirc, value, dirr, dirc);
+}
+
+bool Grid::IsSameValue(Cell* cell1, Cell* cell2)
+{
+    if (cells[cell1->row][cell1->col] == cells[cell2->row][cell2->col])
+    {
+        return true;
+    }
     return false;
 }
 
-void Grid::AddElementAt(int playerId, int col)
+Cell* Grid::AddElementAt(int playerId, int col)
 {
     int emptyRow = ROWS - 1;
+
     cout << "Empty row?" << cells[emptyRow][col] << endl;
 
     while (cells[emptyRow][col] != -1 || emptyRow < 0)
@@ -66,5 +98,7 @@ void Grid::AddElementAt(int playerId, int col)
     cout << "Empty row:" << emptyRow << endl;
     // Add coin to the row
     cout << "Adding value to:" << emptyRow << ":"  << col << endl;
+    Cell* cell = new Cell(emptyRow, col);
     cells[emptyRow][col] = playerId;
+    return cell;
 }

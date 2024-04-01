@@ -1,6 +1,8 @@
 #include "Player.hpp"
 #include <iostream>
 #include <stdio.h>
+#include "Cell.hpp"
+
 using namespace std;
 
 class GameManager {
@@ -34,8 +36,8 @@ public:
       Player p2(1);
       // 0 is p1, 1 is p2
       int turn = 0;
-      bool over = false;
       int input = -1;
+      
       if (turn == 0)
       {
           input = p1.TakeInput(grid);
@@ -44,7 +46,11 @@ public:
       {
           input = p2.TakeInput(grid);
       }
-      if (grid.IsConnected(input))
+      
+      Cell* cell = grid.AddElementAt(turn, input);
+      grid.ShowGrid();
+
+      if (grid.IsConnected(cell, turn))
       {
           if (turn == 0)
           {

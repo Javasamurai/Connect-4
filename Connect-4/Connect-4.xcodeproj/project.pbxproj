@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BF1189C92BB973D700B43279 /* Cell.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF1189C72BB973D700B43279 /* Cell.cpp */; };
 		BF3F369B2BB1F8F000BE6D58 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF3F369A2BB1F8F000BE6D58 /* main.cpp */; };
 		BF3F36A32BB1F92500BE6D58 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF3F36A12BB1F92500BE6D58 /* Player.cpp */; };
 		BF3F36A62BB1FCAF00BE6D58 /* Grid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF3F36A42BB1FCAF00BE6D58 /* Grid.cpp */; };
@@ -25,6 +26,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		BF1189C72BB973D700B43279 /* Cell.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Cell.cpp; sourceTree = "<group>"; };
+		BF1189C82BB973D700B43279 /* Cell.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Cell.hpp; sourceTree = "<group>"; };
 		BF3F36972BB1F8F000BE6D58 /* Connect-4 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Connect-4"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF3F369A2BB1F8F000BE6D58 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		BF3F36A12BB1F92500BE6D58 /* Player.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
@@ -68,6 +71,8 @@
 				BF3F36A22BB1F92500BE6D58 /* Player.hpp */,
 				BF3F36A42BB1FCAF00BE6D58 /* Grid.cpp */,
 				BF3F36A52BB1FCAF00BE6D58 /* Grid.hpp */,
+				BF1189C72BB973D700B43279 /* Cell.cpp */,
+				BF1189C82BB973D700B43279 /* Cell.hpp */,
 			);
 			path = "Connect-4";
 			sourceTree = "<group>";
@@ -130,6 +135,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF3F36A62BB1FCAF00BE6D58 /* Grid.cpp in Sources */,
+				BF1189C92BB973D700B43279 /* Cell.cpp in Sources */,
 				BF3F36A32BB1F92500BE6D58 /* Player.cpp in Sources */,
 				BF3F369B2BB1F8F000BE6D58 /* main.cpp in Sources */,
 			);

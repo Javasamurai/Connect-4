@@ -6,16 +6,21 @@
 #define MIN_CONNECTIONS 4
 
 #include <iostream>
+#include "Cell.hpp"
+
 class Grid
 {
     public:
     Grid();
-    void AddElementAt(int playerId, int col);
+    Cell* AddElementAt(int playerId, int col);
     void ShowGrid();
-    bool IsConnected(int col);
+    bool IsConnected(Cell* cell, int value);
     bool IsColFull(int col);
+    bool CheckNeighbours(int currentConnections, int currentRow, int currentCol, int value, int dirr, int dirc);
     private:
     int cells[ROWS][COLS];
+    bool IsSameValue(Cell* cell1, Cell* cell2);
+    Cell cell;
 };
 
 #endif

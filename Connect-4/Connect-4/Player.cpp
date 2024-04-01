@@ -8,6 +8,10 @@ Player:: Player(int _playerID)
 {
     playerID = _playerID;
 }
+int Player::GetPlayerID()
+{
+    return playerID;
+}
 int Player:: TakeInput(Grid &grid)
 {
     cout << "Taking input from:" << playerID << endl;
@@ -21,7 +25,5 @@ int Player:: TakeInput(Grid &grid)
         }
     } while (col < 0 || col > COLS || grid.IsColFull(col));
 
-    grid.AddElementAt(playerID, col);
-    grid.ShowGrid();
     return col;
 };

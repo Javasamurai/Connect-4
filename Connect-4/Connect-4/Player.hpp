@@ -8,6 +8,7 @@ class Player
 public:
     Player(int playerID);
     int TakeInput(Grid &grid);
+    int GetPlayerID();
 private:
     int playerID;
 };
